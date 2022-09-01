@@ -29,4 +29,3 @@ jobs:
         id: more-verification-script
         run: |
           node src/needs-more-verification.js ${{ inputs.npm-package }}
-                                                                      
