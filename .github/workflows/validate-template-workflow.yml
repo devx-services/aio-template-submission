@@ -118,6 +118,10 @@ jobs:
       - name: Check installation and tests
         id: check-installation-and-tests
         run: |
+          echo "check-github-link-error"
+          echo ${{ outputs.check-github-link-error }}
+          echo "check-github-link-status"
+          echo ${{ outputs.check-github-link-status }}
           failed=0
           cd .. && mkdir "npm-package" && cd "npm-package"
           npm init --yes
