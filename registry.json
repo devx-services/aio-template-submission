@@ -389,5 +389,35 @@
             }
         ],
         "runtime": true
+    },
+    {
+        "id": "ca8bd406-33d8-4370-ab94-ff3341862ff1",
+        "author": "Adobe Inc.",
+        "name": "@lenaorobei/app-builder-template",
+        "description": "Description goes here",
+        "latestVersion": "1.0.7",
+        "publishDate": "2023-01-11T16:56:53.161Z",
+        "categories": [
+            "action",
+            "graphql-mesh"
+        ],
+        "adobeRecommended": false,
+        "keywords": [
+            "aio",
+            "adobeio",
+            "app",
+            "templates",
+            "aio-app-builder-template"
+        ],
+        "links": {
+            "npm": "https://www.npmjs.com/package/@lenaorobei/app-builder-template",
+            "github": "https://github.com/lenaorobei/app-builder-template"
+        },
+        "status": "InVerification",
+        "extensions": [
+            {
+                "extensionPointId": "aem/cf-console-admin/1"
+            }
+        ]
     }
 ]
