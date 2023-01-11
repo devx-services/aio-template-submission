@@ -20,18 +20,27 @@ const { URL } = require('url');
   try {
     const path = (new URL(githubLink)).pathname;
     // find out the default branch
-    const defaultBranchRes = await fetch(`https://api.github.com/repos${path}`);
-    const defaultBranch = (await defaultBranchRes.json()).default_branch;
-    // fetch package.json from the default branch
-    const githubPackageJsonRes = await fetch(`https://raw.githubusercontent.com${path}/${defaultBranch}/package.json`);
-    const githubPackageJson = await githubPackageJsonRes.json();
-
-    if (githubPackageJson.name !== npmPackageName) {
+    const defaultBranch = await fetch(`https://api.github.com/repos${path}`)
+      .then(response => response.json())
+      .then(data => data.default_branch)
+      .catch(function (error) {
+        console.log(error.message)
+        throw new Error(`Error getting the default branch for ${githubLink} repo`);
+      });
+    // fetch package.json from the default branch, read package's name
+    const packageName = await fetch(`https://raw.githubusercontent.com${path}/${defaultBranch}/package.json`)
+      .then(response => response.json())
+      .then(data => data.name)
+      .catch(function (error) {
+        console.log(error.message)
+        throw new Error(`Error reading package name from 'package.json' file in ${githubLink} repo`);
+      });
+    
+    if (packageName !== npmPackageName) {
       const errorMessage = 'Github repo\'s `package.json:name` is not equal to the provided npm package name.';
       throw new Error(errorMessage);
     }
   } catch (e) {
-    core.setOutput('error', `:x: ${e.message}`);
-    process.exitCode = 1;
+    core.setFailed('error', `:x: ${e.message}`);
   }
 })();
