@@ -42,6 +42,6 @@ const { URL } = require('url');
     }
   } catch (e) {
     core.setOutput('error', `:x: ${e.message}`);
-    process.exitCode = 1;
+    throw new Error(e);
   }
 })();
