@@ -56,8 +56,8 @@ jobs:
           failed=0
           git ls-remote --tags ${{ inputs.github-link }} || failed=1
           if [ ${failed} -eq 1 ]; then echo "ERROR=:x: A link to the GitHub repo is incorrect or the GitHub repo is not public." >> $GITHUB_OUTPUT; exit 1; fi;
+          node src/check-github-link-package-name.js ${{ inputs.npm-package }} ${{ inputs.github-link }} || failed=1
           if [ ${failed} -eq 0 ]; then echo "STATUS=success" >> $GITHUB_OUTPUT; fi;
-          node src/check-github-link-package-name.js ${{ inputs.npm-package }} ${{ inputs.github-link }}
   check-npm-package-name:
     name: Check NPM package name
     runs-on: ubuntu-latest
