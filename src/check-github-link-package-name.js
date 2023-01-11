@@ -33,11 +33,11 @@ const { URL } = require('url');
       .then(data => data.name)
       .catch(function (error) {
         console.log(error.message)
-        throw new Error(`Error reading package name from 'package.json' file in ${githubLink} repo`);
+        throw new Error(`Error reading package name from \`package.json\` file in ${githubLink} repo`);
       });
     
     if (packageName !== npmPackageName) {
-      const errorMessage = 'Github repo\'s `package.json:name` is not equal to the provided npm package name.';
+      const errorMessage = 'Package name from `package.json` file is not equal to the provided npm package name.';
       throw new Error(errorMessage);
     }
   } catch (e) {
