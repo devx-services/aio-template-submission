@@ -413,7 +413,7 @@
             "npm": "https://www.npmjs.com/package/@lenaorobei/app-builder-template",
             "github": "https://github.com/lenaorobei/app-builder-template"
         },
-        "status": "Approved",
+        "status": "InVerification",
         "extensions": [
             {
                 "extensionPointId": "aem/cf-console-admin/1"
